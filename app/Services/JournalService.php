@@ -18,10 +18,13 @@ class JournalService {
         $data = $request->all();
 
         $date = $data['date'];
+        $user_id = $data['user_id'];
 
-        $journal = Journal::where('date', $date)->get();
+        $journal = Journal::where([['user_id', '=', $user_id], ['date', '=', $date ]])->get();
 
-        return new JournalResource($journal);
+
+
+        return JournalResource::collection($journal);
     }
 
 }

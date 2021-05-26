@@ -11,8 +11,8 @@ class Journal extends JsonResource
     public function toArray($request)
     {
         return [
-            'user_id'                       => $this->user_id,
             'journal_id'                    => $this->id,
+            'user_id'                       => $this->user_id,
             'date'                          => $this->date,
             'color'                         => $this->color,
             'sentiment_index'               => $this->sentiment_index,
