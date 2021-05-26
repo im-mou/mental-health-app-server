@@ -13,4 +13,10 @@ class Chat extends Model
         'type',
         'body',
     ];
+
+
+    public function journal()
+    {
+        return $this->belongsTo(Journal::class);
+    }
 }

@@ -14,4 +14,9 @@ class Journal extends Model
         'color',
         'sentiment_index',
     ];
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
 }
