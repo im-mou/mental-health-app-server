@@ -21,4 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function(){
     Route::post('journal', [JournalController::class, 'index']);
+    Route::get('journal/{user_id}/{month}/{year}', [JournalController::class, 'getMonthJournal']);
+    Route::get('journal/{user_id}/today', [JournalController::class, 'getTodayJournal']);
+    Route::post('journal/{journal_id}/{user_id}/insert', [JournalController::class, 'addJournalEntry']);
 });

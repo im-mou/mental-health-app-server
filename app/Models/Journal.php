@@ -13,6 +13,7 @@ class Journal extends Model
         'date',
         'color',
         'sentiment_index',
+        'remaining_questions'
     ];
 
     public function chats()

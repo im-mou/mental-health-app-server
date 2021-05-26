@@ -25,7 +25,22 @@ class JournalController extends Controller
      */
     public function index(Request $request)
     {
-        return json_encode($this->journalService->getJournal($request));
+        return json_encode($this->journalService->getJournalFromDate($request));
+    }
+
+    public function getMonthJournal(Request $request, $user_id, $month, $year)
+    {
+        return json_encode($this->journalService->getJournalFromMonth($request, $user_id, $month, $year));
+    }
+
+    public function getTodayJournal(Request $request, $user_id)
+    {
+        return json_encode($this->journalService->getTodayJournal($request, $user_id));
+    }
+
+    public function addJournalEntry(Request $request, $journal_id, $user_id)
+    {
+        return json_encode($this->journalService->addJournalEntry($request, $journal_id, $user_id));
     }
 
     /**
