@@ -50,4 +50,23 @@ class InitService {
 
     }
 
+    public function populateInterests()
+    {
+
+        $rows = array_map(function ($v) {
+            return str_getcsv($v, ";");
+        }, file(public_path('Interests.csv')));
+
+        $header = array_shift($rows);
+        $csv    = [];
+
+        foreach ($rows as $row) {
+            $row[1] = floatval(str_replace(',', '.', $row[1]));
+            $csv[] = array_combine($header, $row);
+        }
+
+        Interest::insert($csv);
+
+    }
+
 }

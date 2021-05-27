@@ -20,6 +20,7 @@ class InitController extends Controller
     {
         $this->initService->populateRecomendations();
         $this->initService->populateQuestions();
+        $this->initService->populateInterests();
 
         return json_encode(['response' => 'done']);
     }
