@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InitController;
 use App\Http\Controllers\InterestController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\JournalController;
@@ -22,6 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1'], function(){
+
+    Route::get('app/populate', [InitController::class, 'index']);
 
     Route::post('journal', [JournalController::class, 'index']);
     Route::get('journal/{user_id}/{month}/{year}', [JournalController::class, 'getMonthJournal']);

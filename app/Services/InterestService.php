@@ -11,8 +11,29 @@ use Validator;
 
 use App\Resources\Interest as InterestResource;
 use App\Resources\User as UserResource;
+use Illuminate\Support\Facades\Storage;
 
 class InterestService {
+
+    public function populateInterests()
+    {
+
+        $rows = array_map(function ($v) {
+            return str_getcsv($v, ";");
+        }, file(storage_path('app/Recomendaciones.csv')));
+
+        $header = array_shift($rows);
+        $csv    = [];
+
+        foreach ($rows as $row) {
+            $row[1] = (int) $row[1];
+            $row[2] = floatval(str_replace(',', '.', $row[2]));
+            $csv[] = array_combine($header, $row);
+        }
+
+        Interest::insert($csv);
+
+    }
 
     public function getInterests(Request $request)
     {
