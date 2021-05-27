@@ -12,4 +12,9 @@ class Interest extends Model
         'title',
         'sentiment_index',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_interests');
+    }
 }

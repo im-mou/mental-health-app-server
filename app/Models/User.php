@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'sleep_time',
+        'notifications',
     ];
 
     /**
@@ -28,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+        // 'password',
         'remember_token',
     ];
 
@@ -40,4 +42,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function interests()
+    {
+        return $this->belongsToMany(Interest::class, 'user_interests');
+    }
 }
