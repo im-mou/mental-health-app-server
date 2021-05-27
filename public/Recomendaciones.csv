@@ -1,0 +1,51 @@
+title;type;sentiment_index
+Un paseo a media tarde ayuda a relajarse;0;0,1
+A veces una bebida caliente puede animarte el día;0;0,5
+Un rato ejercicio al día ayuda a mantenerse en forma;0;0,6
+Descansar un rato después de comer te mantiene activo por la tarde;0;0,3
+Tener suficiente descanso por las noches es muy importante;0;0,3
+Una buena alimentación es fundamental ;0;0,7
+Lavarse los dientes después de cada comida evita visitas con el dentista;0;0,7
+Beber agua en ayunas te hace tener más energia;0;0,6
+Comer 5 piezas de fruta al día te mantiene sano y fuerte;0;0,4
+A veces desconectar una tarde ayuda a volver con más motivación;0;0,2
+Prision Break;1;0,8
+The dragon prince;1;0,9
+Lupin;1;0,7
+Gambito de dama;1;0,5
+Dark;1;0,6
+The Good Place;1;0,2
+Umbrella Academy;1;0,8
+Stranger things;1;0,7
+Community;1;0,2
+The Witcher;1;0,9
+La maldición de Hill House;1;0,6
+Love, Death & Robots;1;0,8
+Sherlock;1;0,6
+Breaking Bad;1;0,9
+Juego de tronos;1;0,5
+Evangelion;1;0,9
+Mujeres desesperadas;1;0,2
+Desencanto;1;0,2
+Rick y Morty;1;0,2
+Invincible;1;0,7
+Saga Harry Potter;2;0,2
+Saga el Señor de los Anillos;2;0,3
+Saga el Hobbit;2;0,7
+Parásitos;2;0,1
+John Wick;2;0,6
+Los Vengadores;2;0,3
+El caballero oscuro;2;0,5
+El Joker;2;0,7
+Bienvenidos a Zombieland;2;0,2
+Godzilla;2;0,8
+Kong, la Isla Clavera;2;0,8
+Godzilla rey de los monstruos;2;0,9
+Godzilla vs. Kong;2;1,0
+Pretty Woman;2;0,2
+Soul;2;0,7
+El planeta del Tesoro;2;0,6
+Atlantis;2;0,5
+El viaje de Chihiro;2;0,8
+Men in Black;2;0,2
+La ruta hacia El Dorado;2;0,2

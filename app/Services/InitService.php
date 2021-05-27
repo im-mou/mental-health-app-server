@@ -16,7 +16,7 @@ class InitService {
 
         $rows = array_map(function ($v) {
             return str_getcsv($v, ";");
-        }, file(storage_path('app/Recomendaciones.csv')));
+        }, file(public_path('Recomendaciones.csv')));
 
         $header = array_shift($rows);
         $csv    = [];
@@ -36,7 +36,7 @@ class InitService {
 
         $rows = array_map(function ($v) {
             return str_getcsv($v, ";");
-        }, file(storage_path('app/Questions.csv')));
+        }, file(public_path('Questions.csv')));
 
         $header = array_shift($rows);
         $csv    = [];
