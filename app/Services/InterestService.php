@@ -35,6 +35,11 @@ class InterestService {
 
     }
 
+    public function getAllInterests()
+    {
+        return InterestResource::collection(Interest::all());
+    }
+
     public function getInterests(Request $request)
     {
         $validator = Validator::make($request->all(), [

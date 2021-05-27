@@ -36,6 +36,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::post('user/togglenotifications', [UserController::class, 'toggleNotifications']);
     Route::post('user/update', [UserController::class, 'updateUserData']);
 
+    Route::get('interests', [InterestController::class, 'getAllInterests']);
     Route::post('interests', [InterestController::class, 'getInterests']);
     Route::post('interests/update', [InterestController::class, 'updateInterests']);
 

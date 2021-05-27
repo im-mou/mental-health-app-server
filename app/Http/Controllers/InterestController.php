@@ -16,6 +16,11 @@ class InterestController extends Controller
         $this->interestService = new InterestService();
     }
 
+    public function getAllInterests()
+    {
+        return json_encode($this->interestService->getAllInterests());
+    }
+
     public function getInterests(Request $request)
     {
         return json_encode($this->interestService->getInterests($request));
