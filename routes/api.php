@@ -26,11 +26,6 @@ Route::group(['prefix' => 'v1'], function(){
 
     Route::get('app/populate', [InitController::class, 'index']);
 
-    Route::post('journal', [JournalController::class, 'index']);
-    Route::get('journal/{user_id}/{month}/{year}', [JournalController::class, 'getMonthJournal']);
-    Route::get('journal/{user_id}/today', [JournalController::class, 'getTodayJournal']);
-    Route::post('journal/{journal_id}/{user_id}/insert', [JournalController::class, 'addJournalEntry']);
-
     Route::post('user/register', [UserController::class, 'store']);
     Route::post('user/info', [UserController::class, 'getUser']);
     Route::post('user/togglenotifications', [UserController::class, 'toggleNotifications']);
@@ -39,5 +34,10 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('interests', [InterestController::class, 'getAllInterests']);
     Route::post('interests', [InterestController::class, 'getInterests']);
     Route::post('interests/update', [InterestController::class, 'updateInterests']);
+
+    Route::post('journal', [JournalController::class, 'index']);
+    Route::post('journal/month', [JournalController::class, 'getMonthJournal']);
+    Route::post('journal/today', [JournalController::class, 'getTodayJournal']);
+    Route::post('journal/insert', [JournalController::class, 'addJournalEntry']);
 
 });

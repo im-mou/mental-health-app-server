@@ -18,92 +18,173 @@ class JournalService {
 
     public function getJournalFromDate(Request $request)
     {
-        $data = $request->all();
 
-        $date = $data['date'];
-        $user_id = $data['user_id'];
+        $validator = Validator::make($request->all(), [
+            'token'   => 'required',
+            'date'   => 'required',
+        ]);
 
-        $journal = Journal::where([['user_id', '=', $user_id], ['date', '=', $date ]])->firstOrFail();
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'message' => 'Los campos no eran validos',
+            ], 422);
+        } else {
 
-        return new JournalResource($journal);
+            $data = $request->all();
+
+            $token = $data['token'];
+            $date = $data['date'];
+
+
+            $user = User::where('password', '=', $token)->firstOrFail();
+
+
+            $journal = Journal::where([['user_id', '=', $user->id], ['date', '=', $date ]])->firstOrFail();
+
+            return new JournalResource($journal);
+        }
+
     }
 
-    public function getJournalFromMonth(Request $request, $user_id, $month, $year)
+    public function getJournalFromMonth(Request $request)
     {
 
-        $journal = Journal::where([['user_id', '=', ],['date', 'like', '%/'.$month.'/'.$year]])->get();
+        $validator = Validator::make($request->all(), [
+            'token'   => 'required',
+            'month'   => 'required',
+            'year'   => 'required',
+        ]);
 
-        return $journal;
-    }
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'message' => 'Los campos no eran validos',
+            ], 422);
+        } else {
 
-    public function getTodayJournal(Request $request, $user_id)
-    {
+            $data = $request->all();
+            $token = $data['token'];
+            $month = $data['month'];
+            $year = $data['year'];
+            $user = User::where('password', '=', $token)->firstOrFail();
 
-        $journal = Journal::firstOrCreate(['user_id' => $user_id, 'date' => date('d/m/Y')]);
+            $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%/'.$month.'/'.$year]])->get();
 
-        if($journal->chats()->count() == 0) {
-
-            // primera entrada al journal
-            $chat = new Chat();
-
-            $chat->journal_id = $journal->id;
-            $chat->type = 'question';
-            $chat->body = Question::inRandomOrder()->first()->body;
-
-            $chat->save();
+            return $journal;
 
         }
 
-        return new JournalResource($journal);
 
     }
 
-    public function addJournalEntry(Request $request, $journal_id, $user_id)
+    public function getTodayJournal(Request $request)
     {
 
-        $journal = Journal::where('id', $journal_id)->where('user_id', $user_id)->firstorfail();
+        $validator = Validator::make($request->all(), [
+            'token'   => 'required',
+        ]);
 
-
-        if($journal->remaining_questions > 0) {
-
-            $journal->remaining_questions = $journal->remaining_questions - 1;
-            $journal->save();
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'message' => 'Los campos no eran validos',
+            ], 422);
+        } else {
 
             $data = $request->all();
-            $text = $data['text'];
+            $token = $data['token'];
+            $user = User::where('password', '=', $token)->firstOrFail();
 
-            // primera entrada al journal
-            $answer = new Chat();
-            $answer->journal_id = $journal->id;
-            $answer->type = 'answer';
-            $answer->body = $text;
-            $answer->save();
+            $journal = Journal::firstOrCreate(['user_id' => $user->id, 'date' => date('d/m/Y')]);
 
+            if($journal->chats()->count() == 0) {
 
-            if($journal->remaining_questions == 0) {
+                // primera entrada al journal
+                $chat = new Chat();
 
-                $next_question = new Chat();
-                $next_question->journal_id = $journal->id;
-                $next_question->type = 'question';
-                $next_question->body = 'Todo Hecho!';
+                $chat->journal_id = $journal->id;
+                $chat->type = 'question';
+                $chat->body = Question::inRandomOrder()->first()->body;
 
-                $next_question->save();
-
-            } else {
-
-                $next_question = new Chat();
-                $next_question->journal_id = $journal->id;
-                $next_question->type = 'question';
-                $next_question->body = Question::inRandomOrder()->first()->body;
-                $next_question->save();
+                $chat->save();
 
             }
 
-            return ChatResource::collection(collect([$answer, $next_question]));
+            return new JournalResource($journal);
 
         }
 
-        return [];
+
+    }
+
+    public function addJournalEntry(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'token'         => 'required',
+            'journal_id'    => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'message' => 'Los campos no eran validos',
+            ], 422);
+        } else {
+
+
+            $data = $request->all();
+            $token = $data['token'];
+            $journal_id = $data['journal_id'];
+            $user = User::where('password', '=', $token)->firstOrFail();
+
+
+            $journal = Journal::where('id', $journal_id)->where('user_id', $user->id)->firstorfail();
+
+
+
+            if($journal->remaining_questions > 0) {
+
+                $journal->remaining_questions = $journal->remaining_questions - 1;
+                $journal->save();
+
+                $data = $request->all();
+                $text = $data['text'];
+
+                // primera entrada al journal
+                $answer = new Chat();
+                $answer->journal_id = $journal->id;
+                $answer->type = 'answer';
+                $answer->body = $text;
+                $answer->save();
+
+
+                if($journal->remaining_questions == 0) {
+
+                    $next_question = new Chat();
+                    $next_question->journal_id = $journal->id;
+                    $next_question->type = 'question';
+                    $next_question->body = 'Todo Hecho!';
+
+                    $next_question->save();
+
+                } else {
+
+                    $next_question = new Chat();
+                    $next_question->journal_id = $journal->id;
+                    $next_question->type = 'question';
+                    $next_question->body = Question::inRandomOrder()->first()->body;
+                    $next_question->save();
+
+                }
+
+                return ChatResource::collection(collect([$answer, $next_question]));
+
+            }
+
+            return [];
+        }
 
     }
 
