@@ -16,7 +16,8 @@ class CreateInterestsTable extends Migration
         Schema::create('interests', function (Blueprint $table) {
             $table->id();
             $table->text('title');
-            $table->float('sentiment_index');
+            $table->text('subtitle');
+            $table->text('url');
             $table->timestamps();
         });
     }

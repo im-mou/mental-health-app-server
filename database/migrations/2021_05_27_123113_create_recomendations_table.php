@@ -15,11 +15,12 @@ class CreateRecomendationsTable extends Migration
     {
         Schema::create('recomendations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->mediumText('description')->nullable();
-            $table->integer('type');
             $table->float('sentiment_index')->default(0.0);
+            $table->unsignedBigInteger('interest_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('interest_id')->references('id')->on('interests');
         });
     }
 

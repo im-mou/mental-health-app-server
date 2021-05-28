@@ -16,8 +16,6 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->mediumText("body");
-            $table->float('sentiment_index')->default(0.0);
-
             $table->timestamps();
         });
     }

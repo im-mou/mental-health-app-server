@@ -11,6 +11,5 @@ class Question extends Model
 
     protected $fillable = [
         'body',
-        'sentiment_index',
     ];
 }

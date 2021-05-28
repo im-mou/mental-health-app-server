@@ -1,51 +1,56 @@
-title;type;sentiment_index
-Un paseo a media tarde ayuda a relajarse;0;0,1
-A veces una bebida caliente puede animarte el día;0;0,5
-Un rato ejercicio al día ayuda a mantenerse en forma;0;0,6
-Descansar un rato después de comer te mantiene activo por la tarde;0;0,3
-Tener suficiente descanso por las noches es muy importante;0;0,3
-Una buena alimentación es fundamental ;0;0,7
-Lavarse los dientes después de cada comida evita visitas con el dentista;0;0,7
-Beber agua en ayunas te hace tener más energia;0;0,6
-Comer 5 piezas de fruta al día te mantiene sano y fuerte;0;0,4
-A veces desconectar una tarde ayuda a volver con más motivación;0;0,2
-Prision Break;1;0,8
-The dragon prince;1;0,9
-Lupin;1;0,7
-Gambito de dama;1;0,5
-Dark;1;0,6
-The Good Place;1;0,2
-Umbrella Academy;1;0,8
-Stranger things;1;0,7
-Community;1;0,2
-The Witcher;1;0,9
-La maldición de Hill House;1;0,6
-Love, Death & Robots;1;0,8
-Sherlock;1;0,6
-Breaking Bad;1;0,9
-Juego de tronos;1;0,5
-Evangelion;1;0,9
-Mujeres desesperadas;1;0,2
-Desencanto;1;0,2
-Rick y Morty;1;0,2
-Invincible;1;0,7
-Saga Harry Potter;2;0,2
-Saga el Señor de los Anillos;2;0,3
-Saga el Hobbit;2;0,7
-Parásitos;2;0,1
-John Wick;2;0,6
-Los Vengadores;2;0,3
-El caballero oscuro;2;0,5
-El Joker;2;0,7
-Bienvenidos a Zombieland;2;0,2
-Godzilla;2;0,8
-Kong, la Isla Clavera;2;0,8
-Godzilla rey de los monstruos;2;0,9
-Godzilla vs. Kong;2;1,0
-Pretty Woman;2;0,2
-Soul;2;0,7
-El planeta del Tesoro;2;0,6
-Atlantis;2;0,5
-El viaje de Chihiro;2;0,8
-Men in Black;2;0,2
-La ruta hacia El Dorado;2;0,2
+description;interest_id;sentiment_index
+Un paseo a media tarde ayuda a relajarse;1;0.0
+A veces una bebida caliente puede animarte el día;1;0.1
+Un rato ejercicio al día ayuda a mantenerse en forma;1;0.2
+Descansar un rato después de comer te mantiene activo por la tarde;1;0.3
+Tener suficiente descanso por las noches es muy importante;1;0.4
+Una buena alimentación es fundamental ;1;0.5
+Lavarse los dientes después de cada comida evita visitas con el dentista;1;0.6
+Beber agua en ayunas te hace tener más energia;1;0.7
+Comer 5 piezas de fruta al dáa te mantiene sano y fuerte;1;0.8
+A veces desconectar una tarde ayuda a volver con más motivación;1;0.9
+Una siesta de 20 minutos te dará la energia que necesitas para acabar el día ;1;1.0
+La Biblia;2;0.0
+Harry Potter;2;0.1
+El ingenioso hidalgo Don Quijote de la Mancha;2;0.2
+El principito;2;0.3
+El código Da Vinci;2;0.4
+El Seóor de los Anillos;2;0.5
+El alquimista;2;0.6
+Cien años de soledad;2;0.7
+El diario de Ana Frank;2;0.8
+El Perfume;2;0.9
+Nacidos de la bruma;2;1.0
+Vaciar la mente;3;0.0
+Cuenta atrás;3;0.1
+Body Scan;3;0.2
+The Mindful Pause;3;0.3
+Observación en meditación dinámica;3;0.4
+Meditación en movimiento;3;0.5
+Visualización;3;0.6
+Meditación con fuego;3;0.7
+Meditación en el agua;3;0.8
+Meditación estítica: La mente como lienzo;3;0.9
+Yoga y tai chi;3;1.0
+Evangelion;4;0.0
+Lupin;4;0.1
+Gambito de dama;4;0.2
+Dark;4;0.3
+The Good Place;4;0.4
+Umbrella Academy;4;0.5
+Stranger things;4;0.6
+Sherlock;4;0.7
+Breaking Bad;4;0.8
+Juego de tronos;4;0.9
+Rick y Morty;4;1.0
+Ceviche peruano;5;0.0
+Sushi japonés;5;0.1
+Helado;5;0.2
+Muamba de pollo;5;0.3
+Tom yum gong;5;0.4
+Penang assam laksa;5;0.5
+Hamburguesa;5;0.6
+Pato estilo Beijing;5;0.7
+Sushi;5;0.8
+Pizza napolitana;5;0.9
+Curry de Massaman;5;1.0

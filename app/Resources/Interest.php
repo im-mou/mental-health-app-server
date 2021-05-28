@@ -12,7 +12,7 @@ class Interest extends JsonResource
         return [
             'id'                            => $this->id,
             'title'                         => $this->title,
-            'sentiment_index'               => $this->sentiment_index,
+            'subtitle'                      => $this->subtitle,
         ];
     }
 }

@@ -10,6 +10,7 @@ class Interest extends Model
     use HasFactory;
     protected $fillable = [
         'title',
+        'subtitle',
         'sentiment_index',
     ];
 

@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Recomendations;
 use Illuminate\Http\Request;
 
+use App\Services\RecomendationService;
+
 class RecomendationsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $recomendationService;
+
+    function __construct(){
+
+        $this->recomendationService = new RecomendationService();
+    }
+
+    public function index(Request $request)
     {
-        //
+        return json_encode($this->recomendationService->getReomendations($request));
     }
 
     /**

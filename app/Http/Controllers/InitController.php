@@ -18,9 +18,9 @@ class InitController extends Controller
 
     public function index()
     {
-        $this->initService->populateRecomendations();
         $this->initService->populateQuestions();
         $this->initService->populateInterests();
+        $this->initService->populateRecomendations();
 
         return json_encode(['response' => 'done']);
     }

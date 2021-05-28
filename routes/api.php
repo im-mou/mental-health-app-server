@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\InitController;
 use App\Http\Controllers\InterestController;
+use App\Http\Controllers\RecomendationsController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\UserController;
@@ -41,5 +42,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::post('journal/insert', [JournalController::class, 'addJournalEntry']);
     Route::post('journal/sentimentupdate', [JournalController::class, 'updateCurrentSentiment']);
     Route::post('journal/generate', [JournalController::class, 'generateJournalForCurrentMonth']);
+
+    Route::post('recomendations', [RecomendationsController::class, 'index']);
 
 });

@@ -23,7 +23,6 @@ class InitService {
 
         foreach ($rows as $row) {
             $row[1] = (int) $row[1];
-            $row[2] = floatval(str_replace(',', '.', $row[2]));
             $csv[] = array_combine($header, $row);
         }
 
@@ -42,7 +41,6 @@ class InitService {
         $csv    = [];
 
         foreach ($rows as $row) {
-            $row[1] = floatval(str_replace(',', '.', $row[1]));
             $csv[] = array_combine($header, $row);
         }
 
@@ -61,7 +59,6 @@ class InitService {
         $csv    = [];
 
         foreach ($rows as $row) {
-            $row[1] = floatval(str_replace(',', '.', $row[1]));
             $csv[] = array_combine($header, $row);
         }
 
