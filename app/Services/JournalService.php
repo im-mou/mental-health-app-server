@@ -71,7 +71,22 @@ class JournalService {
 
             $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%/'.$month.'/'.$year]])->get();
 
-            return $journal;
+            if($journal->count() == 0) {
+
+                $data = [];
+                $header = ['user_id','date'];
+
+                for ($i=0; $i < date('t'); $i++) {
+                    $row = [$user->id, ($i+1).'/'.$month.'/'.$year];
+                    $data[] = array_combine($header, $row);
+                }
+
+                Journal::insert($data);
+            }
+
+            $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%/'.$month.'/'.$year]])->get();
+
+            return JournalResource::collection($journal);
 
         }
 
