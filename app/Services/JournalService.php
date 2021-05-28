@@ -14,6 +14,8 @@ use Validator;
 use App\Resources\Journal as JournalResource;
 use App\Resources\Chat as ChatResource;
 
+use Google\Cloud\Core\ServiceBuilder;
+
 class JournalService {
 
     protected $colors = [
@@ -23,6 +25,23 @@ class JournalService {
         "#FFC9EC7F","#FFC9EC7F",
         "#FF7FECBB","#FF7FECBB","#FF7FECBB",
     ];
+
+    private function sentiment($text)
+    {
+        $cloud = new ServiceBuilder([
+            'keyFilePath' => base_path('mental-health-315107-825cbc5f116a.json'),
+            'projectId' => 'mental-health-315107'
+        ]);
+
+        $language = $cloud->language('es');
+
+        // Detect the sentiment of the text
+        $annotation = $language->analyzeSentiment($text);
+        $sentiment = $annotation->sentiment();
+
+        return $sentiment['score'];
+
+    }
 
     public function getJournalFromDate(Request $request)
     {
@@ -166,6 +185,9 @@ class JournalService {
                 $answer->body = $text;
                 $answer->save();
 
+                 // $journal->sentiment_index = $this->sentiment($answer->body);
+
+
 
                 if($journal->remaining_questions == 0) {
 
@@ -186,9 +208,12 @@ class JournalService {
 
                 }
 
+                $journal->save();
+
                 return ChatResource::collection(collect([$answer, $next_question]));
 
             }
+
 
             return [];
         }
