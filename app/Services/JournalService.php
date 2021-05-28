@@ -211,7 +211,7 @@ class JournalService {
 
             $user = User::where('password', '=', $token)->firstOrFail();
 
-            $journal = Journal::firstOrCreate(['user_id' => $user->id, 'date' => date('d-m-Y')]);
+            $journal = Journal::where(['user_id' => $user->id, 'date' => date('d-m-Y')])->get();
 
             $journal->sentiment_index = $sentiment_index;
             $journal->save();
