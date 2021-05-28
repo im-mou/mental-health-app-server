@@ -17,11 +17,11 @@ use App\Resources\Chat as ChatResource;
 class JournalService {
 
     protected $colors = [
-        "#FF7FECBB","#FF7FECBB",
-        "#FFC9EC7F","#FFC9EC7F",
-        "#FFFFD978","#FFFFD978",
+        "#FFFF8078","#FFFF8078",
         "#FFFFB978","#FFFFB978",
-        "#FFFF8078","#FFFF8078","#FFFF8078"
+        "#FFFFD978","#FFFFD978",
+        "#FFC9EC7F","#FFC9EC7F",
+        "#FF7FECBB","#FF7FECBB","#FF7FECBB"
     ];
 
     public function getJournalFromDate(Request $request)
