@@ -18,7 +18,7 @@ class CreateRecomendationsTable extends Migration
             $table->string('title');
             $table->mediumText('description')->nullable();
             $table->integer('type');
-            $table->float('sentiment_index')->default(0.5);
+            $table->float('sentiment_index')->default(0.0);
             $table->timestamps();
         });
     }

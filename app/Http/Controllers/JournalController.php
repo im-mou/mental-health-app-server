@@ -38,4 +38,9 @@ class JournalController extends Controller
         return json_encode($this->journalService->addJournalEntry($request));
     }
 
+    public function updateCurrentSentiment(Request $request)
+    {
+        return json_encode($this->journalService->updateCurrentSentiment($request));
+    }
+
 }

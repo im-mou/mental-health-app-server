@@ -18,7 +18,7 @@ class CreateJournalsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string("date");
             $table->string("color")->default('#FFF7F7F7');
-            $table->float("sentiment_index")->default(0.5);
+            $table->float("sentiment_index")->default(0.0);
             $table->integer("remaining_questions")->default(5);
             $table->timestamps();
 

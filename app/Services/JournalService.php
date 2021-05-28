@@ -203,4 +203,38 @@ class JournalService {
 
     }
 
+
+    public function updateCurrentSentiment(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'token'             => 'required',
+            'sentiment_index'   => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'message' => 'Los campos no eran validos',
+            ], 422);
+        } else {
+
+
+            $data = $request->all();
+            $token = $data['token'];
+            $sentiment_index = $data['sentiment_index'];
+
+            $user = User::where('password', '=', $token)->firstOrFail();
+
+            $journal = Journal::firstOrCreate(['user_id' => $user->id, 'date' => date('d-m-Y')]);
+
+            $journal->sentiment_index = $sentiment_index;
+            $journal->save();
+
+            return new JournalResource($journal);
+
+        }
+
+    }
+
 }
