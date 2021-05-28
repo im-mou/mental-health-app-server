@@ -69,7 +69,7 @@ class JournalService {
             $year = $data['year'];
             $user = User::where('password', '=', $token)->firstOrFail();
 
-            $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%/'.$month.'/'.$year]])->get();
+            $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%-'.$month.'-'.$year]])->get();
 
             if($journal->count() == 0) {
 
@@ -77,14 +77,14 @@ class JournalService {
                 $header = ['user_id','date'];
 
                 for ($i=0; $i < date('t'); $i++) {
-                    $row = [$user->id, sprintf("%02d",($i+1)).'/'.$month.'/'.$year];
+                    $row = [$user->id, sprintf("%02d",($i+1)).'-'.$month.'-'.$year];
                     $data[] = array_combine($header, $row);
                 }
 
                 Journal::insert($data);
             }
 
-            $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%/'.$month.'/'.$year]])->get();
+            $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%-'.$month.'-'.$year]])->get();
 
             return JournalResource::collection($journal);
 
@@ -111,7 +111,7 @@ class JournalService {
             $token = $data['token'];
             $user = User::where('password', '=', $token)->firstOrFail();
 
-            $journal = Journal::firstOrCreate(['user_id' => $user->id, 'date' => date('d/m/Y')]);
+            $journal = Journal::firstOrCreate(['user_id' => $user->id, 'date' => date('d-m-Y')]);
 
             if($journal->chats()->count() == 0) {
 
