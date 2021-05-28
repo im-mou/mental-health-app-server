@@ -77,7 +77,7 @@ class JournalService {
                 $header = ['user_id','date'];
 
                 for ($i=0; $i < date('t'); $i++) {
-                    $row = [$user->id, ($i+1).'/'.$month.'/'.$year];
+                    $row = [$user->id, sprintf("%02d",($i+1)).'/'.$month.'/'.$year];
                     $data[] = array_combine($header, $row);
                 }
 
