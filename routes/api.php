@@ -40,5 +40,6 @@ Route::group(['prefix' => 'v1'], function(){
     Route::post('journal/today', [JournalController::class, 'getTodayJournal']);
     Route::post('journal/insert', [JournalController::class, 'addJournalEntry']);
     Route::post('journal/sentimentupdate', [JournalController::class, 'updateCurrentSentiment']);
+    Route::post('journal/generate', [JournalController::class, 'generateJournalForCurrentMonth']);
 
 });

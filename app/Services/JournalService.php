@@ -71,21 +71,6 @@ class JournalService {
 
             $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%-'.$month.'-'.$year]])->get();
 
-            if($journal->count() == 0) {
-
-                $data = [];
-                $header = ['user_id','date'];
-
-                for ($i=0; $i < date('t'); $i++) {
-                    $row = [$user->id, sprintf("%02d",($i+1)).'-'.$month.'-'.$year];
-                    $data[] = array_combine($header, $row);
-                }
-
-                Journal::insert($data);
-            }
-
-            $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%-'.$month.'-'.$year]])->get();
-
             return JournalResource::collection($journal);
 
         }
@@ -111,7 +96,7 @@ class JournalService {
             $token = $data['token'];
             $user = User::where('password', '=', $token)->firstOrFail();
 
-            $journal = Journal::firstOrCreate(['user_id' => $user->id, 'date' => date('d-m-Y')]);
+            $journal = Journal::where(['user_id' => $user->id, 'date' => date('d-m-Y')])->get();
 
             if($journal->chats()->count() == 0) {
 
@@ -232,6 +217,46 @@ class JournalService {
             $journal->save();
 
             return new JournalResource($journal);
+
+        }
+
+    }
+
+
+    public function generateJournalForCurrentMonth(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'token'             => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'message' => 'Los campos no eran validos',
+            ], 422);
+        } else {
+
+
+            $data = $request->all();
+            $token = $data['token'];
+
+            $user = User::where('password', '=', $token)->firstOrFail();
+
+            $journal = Journal::where([['user_id', '=', $user->id], ['date', 'like', '%-'.date('m').'-'.date('Y')]])->get();
+
+            if($journal->count() == 0) {
+
+                $data = [];
+                $header = ['user_id','date'];
+
+                for ($i=0; $i < date('t'); $i++) {
+                    $row = [$user->id, sprintf("%02d",($i+1)).'-'.date('m').'-'.date('Y')];
+                    $data[] = array_combine($header, $row);
+                }
+
+                Journal::insert($data);
+            }
 
         }
 

@@ -43,4 +43,9 @@ class JournalController extends Controller
         return json_encode($this->journalService->updateCurrentSentiment($request));
     }
 
+    public function generateJournalForCurrentMonth(Request $request)
+    {
+        return json_encode($this->journalService->generateJournalForCurrentMonth($request));
+    }
+
 }
