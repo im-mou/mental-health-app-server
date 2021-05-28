@@ -16,7 +16,13 @@ use App\Resources\Chat as ChatResource;
 
 class JournalService {
 
-    public $colors = ["", "", "", "", ""];
+    protected $colors = [
+        "#FF7FECBB","#FF7FECBB",
+        "#FFC9EC7F","#FFC9EC7F",
+        "#FFFFD978","#FFFFD978",
+        "#FFFFB978","#FFFFB978",
+        "#FFFF8078","#FFFF8078","#FFFF8078"
+    ];
 
     public function getJournalFromDate(Request $request)
     {
@@ -216,6 +222,9 @@ class JournalService {
             $journal = Journal::where(['user_id' => $user->id, 'date' => date('d-m-Y')])->first();
 
             $journal->sentiment_index += $sentiment_index;
+            $journal->sentiment_index = round($journal->sentiment_index, 2);
+
+            $journal->color = $this->colors[$journal->sentiment_index*10];
 
             $journal->save();
 
