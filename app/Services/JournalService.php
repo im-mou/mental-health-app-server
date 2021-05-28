@@ -215,7 +215,7 @@ class JournalService {
 
             $journal = Journal::where(['user_id' => $user->id, 'date' => date('d-m-Y')])->first();
 
-            $journal->sentiment_index = $sentiment_index;
+            $journal->sentiment_index += $sentiment_index;
 
             $journal->save();
 
