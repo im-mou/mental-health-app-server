@@ -131,7 +131,7 @@ class JournalService {
 
         $validator = Validator::make($request->all(), [
             'token'         => 'required',
-            'journal_id'    => 'required',
+            'text'           => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -144,11 +144,10 @@ class JournalService {
 
             $data = $request->all();
             $token = $data['token'];
-            $journal_id = $data['journal_id'];
             $user = User::where('password', '=', $token)->firstOrFail();
 
 
-            $journal = Journal::where('id', $journal_id)->where('user_id', $user->id)->firstorfail();
+            $journal = Journal::where('date', '=', date('d-m-Y'))->where('user_id', $user->id)->firstorfail();
 
 
 
