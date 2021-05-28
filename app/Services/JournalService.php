@@ -21,7 +21,7 @@ class JournalService {
         "#FFFFB978","#FFFFB978",
         "#FFFFD978","#FFFFD978",
         "#FFC9EC7F","#FFC9EC7F",
-        "#FF7FECBB","#FF7FECBB","#FF7FECBB"
+        "#FF7FECBB","#FF7FECBB","#FF7FECBB",
     ];
 
     public function getJournalFromDate(Request $request)
@@ -104,7 +104,7 @@ class JournalService {
             $token = $data['token'];
             $user = User::where('password', '=', $token)->firstOrFail();
 
-            $journal = Journal::where(['user_id' => $user->id, 'date' => date('d-m-Y')])->get();
+            $journal = Journal::where(['user_id' => $user->id, 'date' => date('d-m-Y')])->first();
 
             if($journal->chats()->count() == 0) {
 
@@ -131,6 +131,7 @@ class JournalService {
 
         $validator = Validator::make($request->all(), [
             'token'         => 'required',
+            'journal_id'    => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -147,7 +148,8 @@ class JournalService {
             $user = User::where('password', '=', $token)->firstOrFail();
 
 
-            $journal = Journal::where('date', date('d-m-Y'))->where('user_id', $user->id)->firstorfail();
+            $journal = Journal::where('id', $journal_id)->where('user_id', $user->id)->firstorfail();
+
 
 
             if($journal->remaining_questions > 0) {
